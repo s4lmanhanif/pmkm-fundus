@@ -1,0 +1,7 @@
+<br />
+<b>Fatal error</b>:  Uncaught TypeError: abs(): Argument #1 ($num) must be of type int|float, array given in C:\xampp\htdocs\gestationa_fundus-try\gestational_fundus\pChart\class\pDraw.class.php:855
+Stack trace:
+#0 C:\xampp\htdocs\gestationa_fundus-try\gestational_fundus\pChart\class\pDraw.class.php(855): abs(Array)
+#1 C:\xampp\htdocs\gestationa_fundus-try\gestational_fundus\make.php(198): pDraw-&gt;drawCircle(161.0, 328.0, 6, Array)
+#2 {main}
+  thrown in <b>C:\xampp\htdocs\gestationa_fundus-try\gestational_fundus\pChart\class\pDraw.class.php</b> on line <b>855</b><br />
