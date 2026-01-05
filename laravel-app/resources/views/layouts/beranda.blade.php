@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestational Fundus - Pemantauan Janin Digital</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5cb3",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2632",
+                        "text-main": "#0d141b",
+                        "text-sub": "#4c739a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main dark:text-white transition-colors duration-200">
+<nav class="fixed top-0 left-0 right-0 z-50 w-full border-b border-[#e7edf3] dark:border-slate-800 bg-surface-light dark:bg-surface-dark">
+<div class="px-4 md:px-10 lg:px-40 flex justify-center py-3">
+<div class="flex w-full max-w-[960px] items-center justify-between">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">pregnant_woman</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Gestational Fundus</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-6 lg:gap-9">
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('beranda') }}">Beranda</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('panduan') }}">Panduan</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('pengukuran') }}">Pengukuran</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('bantuan') }}">Bantuan</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative" data-profile-menu>
+<button class="group flex items-center justify-center rounded-full w-10 h-10 bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors" title="Profil Pengguna" type="button" data-profile-toggle>
+<span class="material-symbols-outlined text-primary group-hover:text-primary-dark text-2xl">account_circle</span>
+</button>
+<div class="absolute right-0 mt-2 w-52 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark shadow-lg hidden" data-profile-dropdown>
+<div class="px-4 py-3 flex items-center gap-2 text-sm font-semibold text-text-main dark:text-white">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span>{{ session('auth_user', 'Akun') }}</span>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-700"></div>
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="w-full text-left px-4 py-3 text-sm text-text-main dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-base text-primary">logout</span>
+<span>Logout</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<button class="md:hidden text-text-main dark:text-white" type="button" data-mobile-toggle>
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="md:hidden hidden fixed inset-x-0 top-[56px] z-40 bg-surface-light dark:bg-surface-dark border-b border-[#e7edf3] dark:border-slate-800 shadow-sm" data-mobile-menu>
+<div class="px-4 py-4 space-y-3">
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('beranda') }}">Beranda</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('panduan') }}">Panduan</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('pengukuran') }}">Pengukuran</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('bantuan') }}">Bantuan</a>
+@if(session()->has('auth_user'))
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="mt-2 w-full text-left text-sm font-semibold text-primary">Logout</button>
+</form>
+@endif
+</div>
+</div>
+<script>
+    document.addEventListener('click', () => {
+        document.querySelectorAll('[data-profile-dropdown]').forEach(dd => dd.classList.add('hidden'));
+    });
+    document.querySelectorAll('[data-profile-menu]').forEach(menu => {
+        const toggle = menu.querySelector('[data-profile-toggle]');
+        const dropdown = menu.querySelector('[data-profile-dropdown]');
+        toggle?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown?.classList.toggle('hidden');
+        });
+        dropdown?.addEventListener('click', (e) => e.stopPropagation());
+    });
+    document.querySelectorAll('[data-mobile-toggle]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const menu = btn.closest('nav')?.nextElementSibling;
+            menu?.classList.toggle('hidden');
+        });
+    });
+</script>
+<div class="relative flex flex-col w-full overflow-x-hidden pt-16">
+<section class="w-full px-4 md:px-10 lg:px-40 py-12 flex justify-center bg-background-light dark:bg-background-dark">
+<div class="flex flex-col max-w-[960px] w-full">
+<div class="@container">
+<div class="flex flex-col-reverse gap-8 md:gap-12 py-6 md:flex-row items-center">
+<div class="flex flex-col gap-6 w-full md:w-1/2 items-start justify-center">
+<div class="flex flex-col gap-4 text-left">
+<span class="text-primary font-bold text-sm tracking-wider uppercase">Inovasi Kesehatan Pedesaan</span>
+<h1 class="text-text-main dark:text-white text-4xl lg:text-5xl font-black leading-[1.15] tracking-[-0.033em]">
+                                    Pantau Pertumbuhan Janin Tanpa USG
+                                </h1>
+<p class="text-text-sub dark:text-gray-400 text-base lg:text-lg font-normal leading-relaxed">
+                                    Tingkatkan akurasi pemantauan janin di Puskesmas melalui digitalisasi pengukuran Tinggi Fundus Uteri (TFU). Solusi ekonomis untuk deteksi dini stunting dan gangguan pertumbuhan.
+                                </p>
+</div>
+<div class="flex flex-wrap gap-3 w-full sm:w-auto">
+<a class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-primary hover:bg-primary-dark text-white text-base font-bold leading-normal tracking-[0.015em] transition-all shadow-md hover:shadow-lg" href="{{ route('pengukuran') }}">
+<span class="truncate">Coba Sekarang</span>
+</a>
+<a class="flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-700 text-text-main dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 text-base font-bold leading-normal tracking-[0.015em] transition-all" href="{{ route('panduan') }}">
+<span class="truncate">Pelajari Panduan</span>
+</a>
+</div>
+<div class="flex items-center gap-2 text-sm text-text-sub dark:text-gray-500 mt-2">
+<span class="material-symbols-outlined text-base text-green-500">check_circle</span>
+<span>Telah digunakan di 50+ Puskesmas</span>
+</div>
+</div>
+<div class="w-full md:w-1/2">
+<div class="w-full aspect-[4/3] bg-center bg-no-repeat bg-cover rounded-xl shadow-xl overflow-hidden relative group" data-alt="Doctor measuring pregnant belly with tape measure in clinic" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDprWFbtZFTow5YAksfzIlQoxslOqzrbQUmvxlicTGoOwAWCZr8agTRt5k-AhWSBE7wTe0d6w3QE4cKxuozC_4AKdx0G6_kKMY-Dzf32DHrbPw7VXNKgiDU2mQ8eOtSWH-lLnlOGwDao0k9PbUVdAeQX_gwT6CZYArL2yQoa3lJYn1hRVa2RZEv_uFxs4RQ-UJMszENOU0RyQmYq0TQXmGNKMfGe91Tf5D1cDxit7-e7kjiOq1f4TqELMi6Hgr66SJvR0GbFWkO5KI");'>
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent mix-blend-overlay"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full px-4 md:px-10 lg:px-40 py-16 flex justify-center bg-surface-light dark:bg-surface-dark border-y border-slate-100 dark:border-slate-800">
+<div class="flex flex-col max-w-[960px] w-full gap-12">
+<div class="flex flex-col gap-4 text-center md:text-left">
+<h2 class="text-text-main dark:text-white text-3xl md:text-4xl font-bold leading-tight tracking-tight max-w-[720px]">
+                        Cara Kerja Kami
+                    </h2>
+<p class="text-text-sub dark:text-gray-400 text-lg font-normal leading-normal max-w-[720px]">
+                        Proses sederhana untuk hasil yang akurat dalam memantau kesehatan janin di daerah dengan fasilitas terbatas.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-background-light dark:bg-background-dark p-6 transition-transform hover:-translate-y-1 hover:shadow-md">
+<div class="size-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">straighten</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-text-main dark:text-white text-xl font-bold leading-tight">1. Ukur TFU Manual</h3>
+<p class="text-text-sub dark:text-gray-400 text-base leading-relaxed">
+                                Lakukan pengukuran standar menggunakan pita ukur (metline) pada perut ibu hamil dari simfisis pubis hingga fundus uteri.
+                            </p>
+</div>
+</div>
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-background-light dark:bg-background-dark p-6 transition-transform hover:-translate-y-1 hover:shadow-md">
+<div class="size-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">calculate</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-text-main dark:text-white text-xl font-bold leading-tight">2. Konversi Digital</h3>
+<p class="text-text-sub dark:text-gray-400 text-base leading-relaxed">
+                                Masukkan hasil ukur cm ke dalam sistem. Algoritma kami akan mengonversi data berdasarkan usia kehamilan (minggu).
+                            </p>
+</div>
+</div>
+<div class="flex flex-col gap-5 rounded-xl border border-slate-200 dark:border-slate-700 bg-background-light dark:bg-background-dark p-6 transition-transform hover:-translate-y-1 hover:shadow-md">
+<div class="size-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">cardiology</span>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="text-text-main dark:text-white text-xl font-bold leading-tight">3. Deteksi Dini</h3>
+<p class="text-text-sub dark:text-gray-400 text-base leading-relaxed">
+                                Dapatkan grafik pertumbuhan dan peringatan dini otomatis jika terdeteksi risiko IUGR (Intrauterine Growth Restriction).
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full px-4 md:px-10 lg:px-40 py-16 flex justify-center bg-background-light dark:bg-background-dark">
+<div class="flex flex-col max-w-[960px] w-full gap-12">
+<div class="flex flex-col gap-4">
+<h2 class="text-text-main dark:text-white text-3xl md:text-4xl font-bold leading-tight tracking-tight">
+                        Keunggulan Platform
+                    </h2>
+<p class="text-text-sub dark:text-gray-400 text-lg font-normal leading-normal max-w-[720px]">
+                        Dirancang khusus untuk membantu tenaga medis di pedesaan Indonesia mengatasi keterbatasan alat.
+                    </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-4 group">
+<div class="w-full aspect-video rounded-xl overflow-hidden shadow-sm">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up of medical calculation and notes on desk" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB5YsxUJ3KQZ2e-hJ9b09uJR8dk_9rYeNZ3Hjzmckg0Cjt8kyTH0YqBaFxv9kocGOHQ_FBiGzcvY_Ep-TmzLsupKWOW7ZyOjwiAQf22253SAn48dY5k1uP_Kw3UMqV4MuQxNX9NRgVlK_eXv63kZPOuiUlrmhAYQlGOzYGduFk2djoA5C-fSHQ3jRfZR56CKCsTVsm1mQ_gbO3tO9N1JoK_Eq1Cfx2_QV5ng1_s7sIJPi6ENq9s4ZPdKWxED9ZUbm3qFoMgD6ih4Y8");'>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">savings</span>
+<h3 class="text-text-main dark:text-white text-lg font-bold leading-normal">Ekonomis &amp; Terjangkau</h3>
+</div>
+<p class="text-text-sub dark:text-gray-400 text-sm font-normal leading-relaxed">
+                                Alternatif biaya rendah untuk pemantauan rutin tanpa memerlukan alat USG yang mahal dan langka.
+                            </p>
+</div>
+</div>
+<div class="flex flex-col gap-4 group">
+<div class="w-full aspect-video rounded-xl overflow-hidden shadow-sm">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Nurse using tablet for digital medical records" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDn9ke8IqTT5XGvFpn5dDo0dZMYRAIwQ58LBBXpns2hgIRBrIwDCxffjEFPWk3osHj-pyjmjzKjyOKh4zxiwdyF3tNDnem-ELjYhqDMR1pSoTJ89cVwKkEpKyWvMdomEuMYHUG6awK7hUABBZp148z4TsFdtWJy1LgnJ3Zjgf0RLQb1h2d84m1IRUy97feyXhYVmDMhVZLoZdfmJis3v2Yi7YbghmIEaWiCXhoEJfZQf1tqyPpEvieyCWhvc0ejRUxEOTDD2PlBto4");'>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">touch_app</span>
+<h3 class="text-text-main dark:text-white text-lg font-bold leading-normal">Mudah Digunakan</h3>
+</div>
+<p class="text-text-sub dark:text-gray-400 text-sm font-normal leading-relaxed">
+                                Antarmuka intuitif yang dapat digunakan oleh bidan dan dokter dengan pelatihan minimal di lapangan.
+                            </p>
+</div>
+</div>
+<div class="flex flex-col gap-4 group">
+<div class="w-full aspect-video rounded-xl overflow-hidden shadow-sm">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-500 group-hover:scale-105" data-alt="Graph showing healthy fetal growth trends" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkq38ShL1ZBXUZbae0sy_wkYyhM4GtnT_qldDATJ2CAeezVGWUJY7ITu3QYudMIzhm1oC354iQzgq-Cg6jVhKVgfYtnQFMymC29j8NBQZw7DIb7rD7QE2qP1dwrGpRSfBLXXzT3SGvj4JHjbQ-igYW0v_-te_fkbKATdRbxOQlSjTzwd3AVmUuKWqTuu0m9CLrBRpakXwzwwbD8CGd9nqb76mtWlI6qFlJq_OHyEf6pj4um3Yj9k1rszUBxNoXQRYGQghJgCRqOto");'>
+</div>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<h3 class="text-text-main dark:text-white text-lg font-bold leading-normal">Akurat &amp; Terstandar</h3>
+</div>
+<p class="text-text-sub dark:text-gray-400 text-sm font-normal leading-relaxed">
+                                Menggunakan kurva pertumbuhan standar WHO dan referensi nasional untuk validitas medis.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="w-full px-4 md:px-10 lg:px-40 py-20 flex justify-center bg-primary text-white relative overflow-hidden">
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 20px 20px;"></div>
+<div class="flex flex-col max-w-[960px] w-full text-center relative z-10 gap-8 items-center">
+<div class="flex flex-col gap-4 items-center">
+<h2 class="text-3xl md:text-5xl font-black leading-tight tracking-tight max-w-[800px]">
+                        Siap Meningkatkan Layanan Kesehatan Ibu &amp; Anak?
+                    </h2>
+<p class="text-blue-100 text-lg md:text-xl font-normal leading-normal max-w-[700px]">
+                        Bergabunglah dengan ribuan tenaga medis lainnya dalam memodernisasi pemantauan kehamilan di Puskesmas Anda.
+                    </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<a class="flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-white text-primary hover:bg-slate-100 text-base font-bold leading-normal tracking-[0.015em] shadow-lg transition-colors" href="{{ route('pengukuran') }}">
+<span class="truncate">Mulai Pengukuran Baru</span>
+</a>
+<a class="flex min-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-14 px-8 bg-transparent border-2 border-white text-white hover:bg-white/10 text-base font-bold leading-normal tracking-[0.015em] transition-colors" href="{{ route('bantuan') }}">
+<span class="truncate">Hubungi Kami</span>
+</a>
+</div>
+</div>
+</section>
+<footer class="w-full px-4 md:px-10 lg:px-40 py-10 flex justify-center bg-surface-light dark:bg-surface-dark border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center max-w-[960px] w-full gap-6">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-2xl">pregnant_woman</span>
+</div>
+<span class="text-text-main dark:text-white font-bold">Gestational Fundus</span>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm" href="#">Privasi</a>
+<a class="text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm" href="#">Syarat &amp; Ketentuan</a>
+<a class="text-text-sub dark:text-gray-400 hover:text-primary dark:hover:text-primary text-sm" href="#">Bantuan</a>
+</div>
+<div class="text-text-sub dark:text-gray-500 text-sm">
+                    Ac 2023 Gestational Fundus.
+                </div>
+</div>
+</footer>
+</div>
+</body></html>

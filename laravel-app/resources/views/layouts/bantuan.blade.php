@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hubungi Kami - Gestational Fundus</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0b5cb3",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2632",
+                        "text-main": "#0d141b",
+                        "text-sub": "#4c739a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display overflow-x-hidden">
+<nav class="fixed top-0 left-0 right-0 z-50 w-full border-b border-[#e7edf3] dark:border-slate-800 bg-surface-light dark:bg-surface-dark">
+<div class="px-4 md:px-10 lg:px-40 flex justify-center py-3">
+<div class="flex w-full max-w-[960px] items-center justify-between">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">pregnant_woman</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Gestational Fundus</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-6 lg:gap-9">
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('beranda') }}">Beranda</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('panduan') }}">Panduan</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('pengukuran') }}">Pengukuran</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="{{ route('bantuan') }}">Bantuan</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative" data-profile-menu>
+<button class="group flex items-center justify-center rounded-full w-10 h-10 bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors" title="Profil Pengguna" type="button" data-profile-toggle>
+<span class="material-symbols-outlined text-primary group-hover:text-primary-dark text-2xl">account_circle</span>
+</button>
+<div class="absolute right-0 mt-2 w-52 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-surface-dark shadow-lg hidden" data-profile-dropdown>
+<div class="px-4 py-3 flex items-center gap-2 text-sm font-semibold text-text-main dark:text-white">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+<span>{{ session('auth_user', 'Akun') }}</span>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-700"></div>
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="w-full text-left px-4 py-3 text-sm text-text-main dark:text-white hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-2" type="submit">
+<span class="material-symbols-outlined text-base text-primary">logout</span>
+<span>Logout</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+<button class="md:hidden text-text-main dark:text-white" type="button" data-mobile-toggle>
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<div class="md:hidden hidden fixed inset-x-0 top-[56px] z-40 bg-surface-light dark:bg-surface-dark border-b border-[#e7edf3] dark:border-slate-800 shadow-sm" data-mobile-menu>
+<div class="px-4 py-4 space-y-3">
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('beranda') }}">Beranda</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('panduan') }}">Panduan</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('pengukuran') }}">Pengukuran</a>
+<a class="block text-text-main dark:text-white text-sm font-medium" href="{{ route('bantuan') }}">Bantuan</a>
+@if(session()->has('auth_user'))
+<form method="POST" action="{{ route('logout') }}">
+@csrf
+<button class="mt-2 w-full text-left text-sm font-semibold text-primary">Logout</button>
+</form>
+@endif
+</div>
+</div>
+<script>
+    document.addEventListener('click', () => {
+        document.querySelectorAll('[data-profile-dropdown]').forEach(dd => dd.classList.add('hidden'));
+    });
+    document.querySelectorAll('[data-profile-menu]').forEach(menu => {
+        const toggle = menu.querySelector('[data-profile-toggle]');
+        const dropdown = menu.querySelector('[data-profile-dropdown]');
+        toggle?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdown?.classList.toggle('hidden');
+        });
+        dropdown?.addEventListener('click', (e) => e.stopPropagation());
+    });
+    document.querySelectorAll('[data-mobile-toggle]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const menu = btn.closest('nav')?.nextElementSibling;
+            menu?.classList.toggle('hidden');
+        });
+    });
+</script>
+<main class="flex-1 w-full px-4 py-8 md:px-10 md:py-12 flex justify-center mt-9">
+<div class="w-full max-w-6xl flex flex-col gap-10">
+<div class="flex flex-col gap-3 max-w-2xl">
+<h1 class="text-slate-900 dark:text-white text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em] mt-8">
+                    Butuh Bantuan? <span class="text-primary">Hubungi Kami.</span>
+</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base md:text-lg font-normal leading-normal">
+                    Kami siap membantu Anda dengan pertanyaan seputar penggunaan aplikasi atau kendala teknis lainnya.
+                </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<div class="lg:col-span-7 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-6 md:p-8 flex flex-col">
+<form class="flex flex-col gap-6 flex-1" onsubmit="event.preventDefault();">
+<div class="flex flex-col md:flex-row gap-6">
+<label class="flex flex-col flex-1 gap-2">
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Nama Lengkap</span>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm" placeholder="Masukkan nama lengkap Anda" type="text"/>
+</label>
+<label class="flex flex-col flex-1 gap-2">
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Alamat Email</span>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white h-12 px-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm" placeholder="nama@puskesmas.id" type="email"/>
+</label>
+</div>
+<label class="flex flex-col gap-2 flex-1">
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Pesan Anda</span>
+<textarea class="form-textarea w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white min-h-[160px] h-full p-4 focus:ring-2 focus:ring-primary/50 focus:border-primary placeholder:text-slate-400 dark:placeholder:text-slate-500 text-sm resize-y" placeholder="Tuliskan kendala atau pertanyaan Anda di sini..."></textarea>
+</label>
+<div class="pt-2">
+<button class="flex w-full md:w-auto cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-primary hover:bg-blue-600 text-white text-sm font-bold tracking-wide transition-colors shadow-sm">
+                                Kirim Pesan
+                            </button>
+</div>
+</form>
+</div>
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-primary/5 dark:bg-slate-800/50 rounded-xl p-6 md:p-8 border border-primary/10 dark:border-slate-700">
+<h3 class="text-slate-900 dark:text-white text-xl font-bold mb-6">Informasi Kontak</h3>
+<div class="flex flex-col gap-6">
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-700 text-primary shadow-sm border border-slate-100 dark:border-slate-600">
+<span class="material-symbols-outlined text-xl">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Email Dukungan</span>
+<a class="text-slate-900 dark:text-white font-semibold hover:text-primary transition-colors" href="mailto:support@gestationalfundus.id">support@gestationalfundus.id</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-700 text-primary shadow-sm border border-slate-100 dark:border-slate-600">
+<span class="material-symbols-outlined text-xl">call</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Telepon / WhatsApp</span>
+<a class="text-slate-900 dark:text-white font-semibold hover:text-primary transition-colors" href="tel:+6281234567890">+62 812-3456-7890</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white dark:bg-slate-700 text-primary shadow-sm border border-slate-100 dark:border-slate-600">
+<span class="material-symbols-outlined text-xl">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-500 dark:text-slate-400 text-sm font-medium">Kantor Pusat</span>
+<span class="text-slate-900 dark:text-white font-semibold">Gedung Layanan Kesehatan,<br/>Jl. Sehat Sejahtera No. 10,<br/>Jakarta Selatan.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative w-full h-56 rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-slate-700 group">
+<div class="absolute inset-0 bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="Peta lokasi gedung layanan kesehatan di Jakarta" data-location="Jakarta" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK4NUMuViAOWD8cWGB1wWU1Uv45FX-TkVnjAlNZXdcvhqX70t9KCXfp-Xiyr41D6O4sDl4Fxb462fvPyPtp39MAWngrWPtC_sS0UXgFsc25ZB6c8kT2M8bw7qrePDlfweDibcGkelLXgwZF-dXh7rS4-unMxj8PUd7s1kl6FNX4C6OUxpJrIMntc9Is-PqsNYfxou_orBcMAu1fEb1NUMkzKLclJt08cOvnZ0nM3J3O0YsR7QozIpwNo3N9K9GgmVabBeC2Tj-jWo"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<div class="absolute bottom-4 right-4 bg-white dark:bg-slate-900 px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-primary text-base">near_me</span>
+                                Buka Peta
+                             </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestational Fundus - Autentikasi</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }.custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 h-screen overflow-hidden flex font-display">
+<div class="hidden lg:flex w-1/2 bg-primary relative flex-col justify-between p-12 overflow-hidden">
+<div class="absolute inset-0 bg-primary z-0">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&amp;w=2080&amp;auto=format&amp;fit=crop')] opacity-20 bg-cover bg-center mix-blend-overlay" data-alt="Abstract medical background with soft blue tones and light bokeh"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40"></div>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 text-white mb-8">
+<div class="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-3xl">pregnant_woman</span>
+</div>
+<h2 class="text-2xl font-bold tracking-tight">Gestational Fundus</h2>
+</div>
+</div>
+<div class="relative z-10 max-w-lg">
+<h1 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
+            Pemantauan Janin Terjangkau untuk Pedesaan
+        </h1>
+<p class="text-lg text-blue-50 leading-relaxed mb-8">
+            Platform medis terintegrasi untuk Bidan dan Dokter Puskesmas. Pantau kesehatan ibu dan janin secara real-time, dimanapun, kapanpun.
+        </p>
+<div class="flex gap-4 items-center">
+<div class="flex -space-x-3">
+<img alt="Portrait of a female doctor" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="Doctor portrait smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrCFj3o_CvFbhSFotForeBP6IofF56tvcYrVYyXhRCkMdXBf-q-_ChTVJbdGsvDEJU9ezDqIZZi04D8PtJEddS-qjoix41EQ23Fvw6rEoLmma2LnyqdwlEVE0Owr6xwQ8U5mQhngPi9D_xVyKyILfopuBfn_1X_Pmkl8qnhkX47-Btw44cmWk9mqKOchh4H3ir3B2ja4ZymnL7wN0NVRaVwItHcsFXxL3z8LeInTWXsTJCus5CBYZ_F8ku-7-FLlJqH5xa_FdIs1A"/>
+<img alt="Portrait of a male doctor" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="Male healthcare worker portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJlA-Ps0FfY2z6bkIP9tcX2fDcLPsN4dWBMQfI2CDtiIFGTUNWyBJ0qjU4gHueShCCNuN6l0TYH8W6Hbb2Jx0GRnpVjmuFHClY28w5fSHJoNHPUrN8tVtsA9XzQGh2PTShKcBv6CjYRr07JsZfqq7wCb97xQdnBV97W25wzMXKE5RK8mrUHAIx7W7H_4LnVNHFjA9a8ZTD4wi_Qqaxl52E6u7Lnfs0DDUJT7oFSMxwJtAQ0R0YeZ9_XwoRKJ0wZ29cT43AWvHZZ2M"/>
+<img alt="Portrait of a midwife" class="w-10 h-10 rounded-full border-2 border-primary object-cover" data-alt="Midwife portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd3FsHDRas7MJTQIaRfagXIGDmnVzgWF9gFaW_p-EQLdlOPCxZ-4UvznNROfMJdCwnl8gWJBkSLRGjL7KTl9ltFh1s8CVUa6wDKpvnIxu3gbzf5O5bGWgafcBnO1zNGk-FlPJ1TRACmti4W8mTvXqOIMnu5ePPlLxKpT-AFVJhegvu_1Q13C3WW4TKDfBavDpcYmxquTXU-ioRCjo2_A_FJvpC_s7Y9OodERd4hEypjpx5wA-KHXztG-8jv95N5hna7bIjyrEDiYE"/>
+<div class="w-10 h-10 rounded-full border-2 border-primary bg-white text-primary flex items-center justify-center text-xs font-bold z-10">2k+</div>
+</div>
+<div class="text-sm text-blue-100">
+<span class="font-bold text-white">2,000+</span> Tenaga Medis Bergabung
+            </div>
+</div>
+</div>
+<div class="relative z-10 text-xs text-blue-200 mt-12 flex justify-between w-full opacity-70">
+<span>© 2024 Gestational Fundus System</span>
+<span>Privacy &amp; Terms</span>
+</div>
+</div>
+<div class="w-full lg:w-1/2 flex flex-col h-full bg-background-light dark:bg-background-dark relative">
+<header class="lg:hidden flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-2xl">pregnant_woman</span>
+<span class="font-bold text-lg text-slate-900 dark:text-white">Gestational Fundus</span>
+</div>
+<button class="p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+</header>
+<div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col items-center justify-start py-8 px-6 sm:px-12 md:px-20">
+<div class="w-full max-w-[480px] my-auto">
+<div class="text-center mb-8">
+<h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Selamat Datang</h2>
+<p class="text-slate-500 dark:text-slate-400">Silakan masuk atau daftar akun baru untuk melanjutkan.</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-1 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 mb-8 flex">
+<button class="flex-1 py-2.5 text-sm font-medium rounded-lg text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-all">
+                    Masuk
+                </button>
+<button class="flex-1 py-2.5 text-sm font-bold rounded-lg bg-primary text-white shadow-md transition-all">
+                    Daftar
+                </button>
+</div>
+<form class="space-y-5 animate-fade-in">
+<div>
+<label class="block text-sm font-medium text-slate-900 dark:text-white mb-3">Jenis Pengguna</label>
+<div class="grid grid-cols-2 gap-4">
+<label class="cursor-pointer relative group">
+<input checked="" class="peer sr-only" name="role" type="radio" value="bidan"/>
+<div class="p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/5 dark:peer-checked:bg-primary/10 transition-all flex flex-col items-center justify-center gap-2 h-full">
+<span class="material-symbols-outlined text-3xl text-slate-400 peer-checked:text-primary transition-colors">child_care</span>
+<span class="text-sm font-bold text-slate-600 dark:text-slate-300 peer-checked:text-primary">Bidan</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+<label class="cursor-pointer relative group">
+<input class="peer sr-only" name="role" type="radio" value="dokter"/>
+<div class="p-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 hover:border-primary/50 peer-checked:border-primary peer-checked:bg-primary/5 dark:peer-checked:bg-primary/10 transition-all flex flex-col items-center justify-center gap-2 h-full">
+<span class="material-symbols-outlined text-3xl text-slate-400 peer-checked:text-primary transition-colors">stethoscope</span>
+<span class="text-sm font-bold text-slate-600 dark:text-slate-300 peer-checked:text-primary">Dokter</span>
+</div>
+<div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 text-primary transition-opacity">
+<span class="material-symbols-outlined text-lg">check_circle</span>
+</div>
+</label>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-900 dark:text-white mb-2">Nama Lengkap</label>
+<div class="relative">
+<input class="w-full pl-11 pr-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors placeholder:text-slate-400" placeholder="Masukkan nama lengkap beserta gelar" type="text"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-900 dark:text-white mb-2">Email Institusi</label>
+<div class="relative">
+<input class="w-full pl-11 pr-4 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors placeholder:text-slate-400" placeholder="contoh: bidan@puskesmas.id" type="email"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<div>
+<label class="block text-sm font-medium text-slate-900 dark:text-white mb-2">Password</label>
+<div class="relative">
+<input class="w-full pl-11 pr-10 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors placeholder:text-slate-400" placeholder="Minimal 8 karakter" type="password"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility_off</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-900 dark:text-white mb-2">Konfirmasi Password</label>
+<div class="relative">
+<input class="w-full pl-11 pr-10 py-3 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors placeholder:text-slate-400" placeholder="Ulangi password" type="password"/>
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-[20px]">lock_reset</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 pt-2">
+<div class="flex h-6 items-center">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary/25 dark:border-slate-600 dark:bg-slate-700" id="terms" type="checkbox"/>
+</div>
+<div class="text-sm leading-6">
+<label class="font-medium text-slate-700 dark:text-slate-300" for="terms">Saya menyetujui <a class="text-primary hover:underline" href="#">Syarat &amp; Ketentuan</a> serta <a class="text-primary hover:underline" href="#">Kebijakan Privasi</a>.</label>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3.5 px-4 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-[0.98] mt-4 flex justify-center items-center gap-2" type="submit">
+<span>Buat Akun Baru</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</form>
+<div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-sm text-slate-600 dark:text-slate-400">
+                    Sudah memiliki akun terdaftar?
+                    <a class="font-bold text-primary hover:text-blue-600 dark:hover:text-blue-400 hover:underline transition-colors ml-1" href="#">
+                        Masuk disini
+                    </a>
+</p>
+</div>
+<div class="mt-10 flex justify-center gap-6 text-xs text-slate-400 dark:text-slate-500">
+<a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Pusat Bantuan</a>
+<a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Tentang Kami</a>
+<a class="hover:text-slate-600 dark:hover:text-slate-300 transition-colors" href="#">Unduh Aplikasi</a>
+</div>
+</div>
+</div>
+</div>
+
+</body></html>

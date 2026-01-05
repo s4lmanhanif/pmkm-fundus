@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pengukuran &amp; Grafik Pertumbuhan - Sistem Pemantauan Janin</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "primary-dark": "#0e62b8",
+                        "success": "#16a34a",
+                        "success-hover": "#15803d",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "card-light": "#ffffff",
+                        "card-dark": "#1e293b",
+                        "border-light": "#e7edf3",
+                        "border-dark": "#334155",
+                        "text-main-light": "#0d141b",
+                        "text-main-dark": "#f8fafc",
+                        "text-secondary-light": "#4c739a",
+                        "text-secondary-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-200">
+<div class="flex min-h-screen w-full flex-col overflow-x-hidden">
+<nav class="fixed top-0 left-0 right-0 z-50 w-full border-b border-[#e7edf3] dark:border-slate-800 bg-surface-light dark:bg-surface-dark">
+<div class="px-4 md:px-10 lg:px-40 flex justify-center py-3">
+<div class="flex w-full max-w-[960px] items-center justify-between">
+<div class="flex items-center gap-4 text-text-main dark:text-white">
+<div class="flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">pregnant_woman</span>
+</div>
+<h2 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Gestational Fundus</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+<div class="flex items-center gap-6 lg:gap-9">
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Beranda</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Panduan</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Pengukuran</a>
+<a class="text-text-main dark:text-gray-300 hover:text-primary text-sm font-medium leading-normal transition-colors" href="#">Bantuan</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="group flex items-center justify-center rounded-full w-10 h-10 bg-blue-50 hover:bg-blue-100 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors" title="Profil Pengguna" type="button">
+<span class="material-symbols-outlined text-primary group-hover:text-primary-dark text-2xl">account_circle</span>
+</button>
+</div>
+</div>
+<button class="md:hidden text-text-main dark:text-white" type="button">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-1 px-4 lg:px-8 py-6 w-full max-w-[1440px] mx-auto mt-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<div class="col-span-12 lg:col-span-4 flex flex-col gap-6">
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden p-5">
+<div class="flex justify-between items-center mb-4">
+<div>
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium">Cari Pasien</p>
+<h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Database Ibu Hamil</h3>
+</div>
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0 terdaftar</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Nama pasien</label>
+<input class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm" placeholder="Ketik nama..." type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Atau pilih ID</label>
+<select class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm">
+<option value="">-- pilih --</option>
+</select>
+<div class="grid grid-cols-2 gap-3 mt-1">
+<button class="bg-primary hover:bg-primary-dark text-white font-medium text-sm h-10 rounded-lg transition-colors flex items-center justify-center">
+                                    Muat data
+                                </button>
+<button class="bg-primary hover:bg-primary-dark text-white font-medium text-sm h-10 rounded-lg transition-colors flex items-center justify-center">
+                                    Hapus Data
+                                </button>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm overflow-hidden p-5">
+<h3 class="text-text-main-light dark:text-text-main-dark text-base font-bold mb-4">Tambah Pasien Baru</h3>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Nama</label>
+<input class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Alamat</label>
+<textarea class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-20 p-3 text-sm resize-none"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">EDD</label>
+<input class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm" placeholder="dd/mm/yyyy" type="date"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Kelamin Janin</label>
+<select class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm">
+<option>Belum diketahui</option>
+<option>Laki-laki</option>
+<option>Perempuan</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Etnis</label>
+<select class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm">
+<option>South East Asia</option>
+<option>Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Parity</label>
+<select class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm">
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3+</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Tinggi (cm)</label>
+<input class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm" type="number"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="text-text-main-light dark:text-text-main-dark text-sm font-medium">Berat (kg)</label>
+<input class="w-full rounded-lg border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-text-main-light dark:text-text-main-dark focus:border-primary focus:ring-primary h-10 px-3 text-sm" type="number"/>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary-dark text-white font-medium h-10 rounded-lg transition-colors flex items-center justify-center mt-2 w-full">
+                            Simpan Pasien
+                        </button>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-8 flex flex-col gap-6 h-full">
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark p-5 shadow-sm">
+<p class="text-xs text-text-secondary-light dark:text-text-secondary-dark font-medium mb-1">Status Pasien</p>
+<h3 class="text-text-main-light dark:text-text-main-dark text-lg font-bold">Belum ada pasien dipilih</h3>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-xl border border-border-light dark:border-border-dark shadow-sm flex-1 flex flex-col min-h-[600px] relative">
+<div class="px-6 py-4 border-b border-border-light dark:border-border-dark flex justify-between items-center">
+<h3 class="text-text-main-light dark:text-text-main-dark text-base font-bold">Grafik Pertumbuhan Janin</h3>
+<span class="text-xs font-bold text-text-main-light dark:text-text-main-dark bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">GA 24 - 42 minggu</span>
+</div>
+<div class="flex-1 flex flex-col items-center justify-center p-8 bg-white dark:bg-[#1a202c] rounded-b-xl relative">
+<div class="flex flex-col items-center justify-center text-center max-w-sm">
+<div class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-lg flex items-center justify-center mb-4 text-primary">
+<span class="material-symbols-outlined text-4xl">show_chart</span>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-sm">Cari atau tambahkan pasien untuk menampilkan grafik pertumbuhan.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
